@@ -1,15 +1,22 @@
 # wayland-headers packaged for the Zig build system
 
-This is a Zig package which provides various Wayland headers needed to develop and cross-compile. It includes generated Wayland headers for protocols used in Mach core.
+This is a Zig package which provides various Wayland headers needed to develop and cross-compile.
 
-* xdg-shell
-* xdg-decoration
-* viewporter
-* pointer-constraints-unstable-v1
-* relative-pointer-unstable-v1
-* idle-inhibit-unstable-v1
+It includes:
 
-As well as non-generated headers (see the `include/` directory.)
+* non-generated Wayland headers (see `wayland/`)
+
+* generated headers for Wayland protocols (see `wayland-protocols/`):
+
+  * idle-inhibit-unstable-v1
+  * pointer-constraints-unstable-v1
+  * relative-pointer-unstable-v1
+  * viewporter
+  * xdg-decoration
+  * xdg-shell
+
+* And headers for libdecor (see `libdecor/`)
+
 
 ## Updating
 
