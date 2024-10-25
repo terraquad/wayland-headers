@@ -21,8 +21,8 @@ git_clone_rev() {
     popd
 }
 
-rm -rf include libdecor wayland-protocols
-mkdir include libdecor wayland-protocols
+rm -rf libdecor wayland wayland-protocols
+mkdir libdecor wayland wayland-protocols
 
 
 # install headers for libdecor
@@ -33,7 +33,7 @@ mv _libdecor/src/*.h libdecor
 git_clone_rev https://gitlab.freedesktop.org/wayland/wayland.git "$WAYLAND_REV" _wayland
 
 # install/generate headers as per https://gitlab.freedesktop.org/wayland/wayland/-/blob/main/src/meson.build
-mv _wayland/src/wayland{-util,-server{,-core},-client{,-core}}.h include
+mv _wayland/src/wayland{-util,-server{,-core},-client{,-core}}.h wayland
 # generate version header
 version=$(grep -o '\bversion:\s'\''[^'\'']*' _wayland/meson.build | cut -d \' -f 2)
 parts=(${version//./ })
@@ -42,10 +42,10 @@ sed \
     -e "s/@WAYLAND_VERSION_MAJOR@/${parts[0]}/" \
     -e "s/@WAYLAND_VERSION_MINOR@/${parts[1]}/" \
     -e "s/@WAYLAND_VERSION_MICRO@/${parts[2]}/" \
-    _wayland/src/wayland-version.h.in > include/wayland-version.h
+    _wayland/src/wayland-version.h.in > wayland/wayland-version.h
 # generate main protocol headers
-wayland-scanner server-header _wayland/protocol/wayland.xml include/wayland-server-protocol.h
-wayland-scanner client-header _wayland/protocol/wayland.xml include/wayland-client-protocol.h
+wayland-scanner server-header _wayland/protocol/wayland.xml wayland/wayland-server-protocol.h
+wayland-scanner client-header _wayland/protocol/wayland.xml wayland/wayland-client-protocol.h
 
 
 git_clone_rev https://gitlab.freedesktop.org/wayland/wayland-protocols.git "$WAYLAND_PROTOCOLS_REV" _wayland-protocols
