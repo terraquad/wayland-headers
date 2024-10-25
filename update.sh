@@ -2,6 +2,7 @@
 set -euo pipefail
 set -x
 
+LIBDECOR_REV=7807ae3480f5c6a37c5e8505d94af1e764aaf704
 WAYLAND_REV=edb943dc6464697ba13d7df277aef277721764b7
 PROTOCOLS_REV=e1d61ce9402ebd996d758c43f167e6280c1a3568
 
@@ -20,8 +21,14 @@ git_clone_rev() {
     popd
 }
 
-rm -rf include wayland-generated
-mkdir include wayland-generated
+rm -rf include libdecor wayland-generated
+mkdir include libdecor wayland-generated
+
+
+# install headers for libdecor
+git_clone_rev https://gitlab.freedesktop.org/libdecor/libdecor.git "$LIBDECOR_REV" _libdecor
+mv _libdecor/src/*.h libdecor
+
 
 git_clone_rev https://gitlab.freedesktop.org/wayland/wayland.git "$WAYLAND_REV" _wayland
 
@@ -39,6 +46,7 @@ sed \
 # generate main protocol headers
 wayland-scanner server-header _wayland/protocol/wayland.xml include/wayland-server-protocol.h
 wayland-scanner client-header _wayland/protocol/wayland.xml include/wayland-client-protocol.h
+
 
 git_clone_rev https://gitlab.freedesktop.org/wayland/wayland-protocols.git "$PROTOCOLS_REV" _protocols
 
@@ -62,4 +70,5 @@ generate_glfw _protocols/unstable/idle-inhibit/idle-inhibit-unstable-v1.xml idle
 # for the main protocol the header has already been generated, so we only need the code
 wayland-scanner private-code _wayland/protocol/wayland.xml wayland-generated/wayland-client-protocol-code.h
 
-rm -rf _wayland _protocols
+
+rm -rf _libdecor _protocols _wayland
