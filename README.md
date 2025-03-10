@@ -4,19 +4,18 @@ This is a Zig package which provides various Wayland headers needed to develop a
 
 It includes:
 
-* non-generated Wayland headers (see `wayland/`)
+- non-generated Wayland headers (see `wayland/`)
 
-* generated headers for Wayland protocols (see `wayland-protocols/`):
+- generated headers for Wayland protocols (see `wayland-protocols/`):
 
-  * idle-inhibit-unstable-v1
-  * pointer-constraints-unstable-v1
-  * relative-pointer-unstable-v1
-  * viewporter
-  * xdg-decoration
-  * xdg-shell
+  - idle-inhibit-unstable-v1
+  - pointer-constraints-unstable-v1
+  - relative-pointer-unstable-v1
+  - viewporter
+  - xdg-decoration
+  - xdg-shell
 
-* And headers for libdecor (see `libdecor/`)
-
+- And headers for libdecor (see `libdecor/`)
 
 ## Updating
 
@@ -31,7 +30,3 @@ For supply chain security reasons (e.g. to confirm we made no patches to the cod
 ```
 
 If nothing is printed, there is no diff. Deleted files, and changes to `README.md`, `build.zig`, `.github` CI files and `.gitignore` are ignored.
-
-## Issues
-
-Issues are tracked in the [main Mach repository](https://github.com/hexops/mach/issues?q=is%3Aissue+is%3Aopen+label%3Awayland-headers).
