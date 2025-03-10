@@ -1,0 +1,15 @@
+.{
+    .name = .wayland_headers,
+    .version = "1.23.90",
+    .fingerprint = 0xf2f733e969c040cc,
+    .minimum_zig_version = "0.14.0",
+
+    .paths = .{
+        "libdecor",
+        "wayland",
+        "wayland-protocols",
+        "build.zig.zon",
+        "update.sh",
+        "verify.sh",
+    },
+}
