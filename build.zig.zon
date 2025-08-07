@@ -8,6 +8,7 @@
         "libdecor",
         "wayland",
         "wayland-protocols",
+        "build.zig",
         "build.zig.zon",
         "update.sh",
         "verify.sh",

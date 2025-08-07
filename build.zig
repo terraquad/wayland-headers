@@ -17,8 +17,7 @@ pub fn build(b: *std.Build) void {
         .root_module = module,
         .linkage = .static,
     });
-    lib.installHeadersDirectory(b.path("wayland"), "wayland", .{});
-    lib.installHeadersDirectory(b.path("wayland-protocols"), "wayland-protocols", .{});
-    lib.installHeadersDirectory(b.path("libdecor"), "libdecor", .{});
+    lib.installHeadersDirectory(b.path("wayland"), ".", .{});
+    lib.installHeadersDirectory(b.path("wayland-protocols"), ".", .{});
     b.installArtifact(lib);
 }
