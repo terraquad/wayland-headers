@@ -2,7 +2,7 @@
     .name = .wayland_headers,
     .version = "1.23.90",
     .fingerprint = 0xf2f733e969c040cc,
-    .minimum_zig_version = "0.14.0",
+    .minimum_zig_version = "0.15.0-dev.1393+493265486",
 
     .paths = .{
         "libdecor",
