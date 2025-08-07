@@ -1,0 +1,16 @@
+name: CI
+on:
+  - push
+  - pull_request
+jobs:
+  x86_64-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+      - name: Setup Zig
+        uses: mlugg/setup-zig@v2
+      - name: build
+        run: zig build
